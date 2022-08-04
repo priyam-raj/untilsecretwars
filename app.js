@@ -91,10 +91,6 @@ function timeout(ms) {
   );
   
   
-//   tweetNow();
-  instagramPost();
-  tweetNow();
-
   
   dailyPost.start();
   console.log('Successfully started, now tweeting and posting to Instagram!');
