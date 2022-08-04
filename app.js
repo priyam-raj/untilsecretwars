@@ -19,13 +19,6 @@ dotenv.config();
   app.get("/", function (request, response) {
     response.send('untilsecretwars is currently up and running <br><br> - Instagram @untilsecretwars<br> - Twitter @untilsecretwars');
   });
-
-
-    // Set 3 second delay (For compressions and resizes.)
-function timeout(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-  
     
   
   async function tweetNow() {
@@ -90,6 +83,9 @@ function timeout(ms) {
     true
   );
   
+
+  instagramPost();
+  tweetNow();
   
   
   dailyPost.start();

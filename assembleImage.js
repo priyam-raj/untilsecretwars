@@ -1,14 +1,12 @@
 import fetch from "node-fetch";
 import Jimp from "jimp";
 
-// For adding manual delays. 
-function timeout(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
+// Change this to modify the date. 
+let secretWarsDate = "11/01/2025";
+
 
 async function daysLeft() {
-
-  let secretWarsDate = "11/01/2025";
 
   // Fetch Today's Date
   let today = new Date().toLocaleDateString("en-us", {
@@ -65,7 +63,6 @@ async function buildDaysLeftImage() {
         .write('daysleft.jpg'); // save
     }); 
   });
-  await timeout(1000);
 
   return noOfDays;
 
