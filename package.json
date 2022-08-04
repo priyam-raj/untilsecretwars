@@ -5,7 +5,8 @@
   "description": "Generates an image of the number of days left until Avengers: Secret Wars and posts it to social media every day.",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "test": "node app.js",
+    "start": "node app.js"
   },
   "author": "Priyam Raj",
   "dependencies": {
