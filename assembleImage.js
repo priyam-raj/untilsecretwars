@@ -3,7 +3,7 @@ import Jimp from "jimp";
 
 
 // Change this to modify the date. 
-let secretWarsDate = "11/07/2025";
+let secretWarsDate = "11/08/2025";
 
 
 async function daysLeft() {
