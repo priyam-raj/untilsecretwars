@@ -2,11 +2,13 @@ import fetch from "node-fetch";
 import Jimp from "jimp";
 
 
-// Change this to modify the date. 
-let secretWarsDate = "11/08/2025";
 
 
 async function daysLeft() {
+
+  // Change this to modify the date. 
+let secretWarsDate = "11/08/2025";
+
 
   // Fetch Today's Date
   let today = new Date().toLocaleDateString("en-us", {
@@ -23,11 +25,15 @@ async function daysLeft() {
   let Difference_In_Time = date2.getTime() - date1.getTime();
   let daysLeft = (Difference_In_Time / (1000 * 3600 * 24)).toString();
 
-  return daysLeft;
+  let returnedData = [daysLeft, secretWarsDate];
+
+  return returnedData;
+
 }
 
 async function buildDaysLeftImage() {
   let noOfDays = await daysLeft();
+  noOfDays = noOfDays[0];
 
   let daysText;
 
@@ -72,4 +78,4 @@ async function buildDaysLeftImage() {
 buildDaysLeftImage()
 
 
-export { buildDaysLeftImage };
+export { buildDaysLeftImage, daysLeft };

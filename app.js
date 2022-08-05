@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import { TwitterApi } from "twitter-api-v2";
 import { IgApiClient } from "instagram-private-api";
 import { promisify } from "util";
-import { buildDaysLeftImage } from "./assembleImage.js";
+import { buildDaysLeftImage, daysLeft } from "./assembleImage.js";
 import { readFile } from "fs";
 
 
@@ -24,7 +24,10 @@ dotenv.config();
   async function tweetNow() {
     console.log("Tweeting begins..");
     let caption = await buildDaysLeftImage();
-    caption = `📅 ${caption} days left until #AvengersSecretWars.`;   
+    let secretWarsDate = await daysLeft();
+    secretWarsDate = secretWarsDate[1];
+
+    caption = `📅 ${caption} days left until #AvengersSecretWars\n The movie is current expected to come out on ${secretWarsDate}`;   
   
       const client = new TwitterApi({
         appKey: process.env.CONSUMER_KEY,
@@ -53,12 +56,14 @@ dotenv.config();
 
   async function instagramPost() {
     try {
+      let secretWarsDate = await daysLeft();
+      secretWarsDate = secretWarsDate[1];  
       console.log("Posting to Instagram begins..");
       // Instagram client
       const { username, password } = process.env;
       const ig = new IgApiClient();
       let caption = await buildDaysLeftImage();
-      caption = `📅 ${caption} days left until Avengers: Secret Wars.\n\n#avengers #marvel #spiderman #avengerssecretwars #kangdynasty #kang #marvel #mcu #avengersendgame #captainamerica #thor #marvelcomics #blackwidow #hulk #marvelstudios #avengersinfinitywar #comics #secretwars #loki #marveluniverse #marvelcinematicmultiverse #marvelcinematicuniverse #avengersassemble`;
+      caption = `📅 ${caption} days left until Avengers: Secret Wars\nThe movie is currently expected to come out on ${secretWarsDate}.\n\n#avengers #marvel #avengerssecretwars #kangdynasty #kang #marvel #mcu #avengersendgame #marvelstudios #secretwars #loki #marveluniverse #marvelcinematicmultiverse #avengersassemble`;
       ig.state.generateDevice(username);
       const user = await ig.account.login(username, password);
       const path = `daysleft.jpg`;
@@ -74,7 +79,7 @@ dotenv.config();
   
   // Run on every day at 12 PM IST
   let dailyPost = new CronJob(
-    "0 12 * * *",
+    "30 6 * * *",
     function () {
       console.log("Auto post to Instagram begins..");
       instagramPost();
@@ -84,10 +89,6 @@ dotenv.config();
   );
   
 
-  instagramPost();
-  tweetNow();
-  
-  
   dailyPost.start();
   console.log('Successfully started, now tweeting and posting to Instagram!');
   
