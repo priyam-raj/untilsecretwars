@@ -21,11 +21,19 @@ let secretWarsDate = "11/08/2025";
   let date1 = new Date(today);
   let date2 = new Date(secretWarsDate);
 
+  let prettierData = new Date(secretWarsDate);
+
+  prettierData = prettierData.toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
 
   let Difference_In_Time = date2.getTime() - date1.getTime();
   let daysLeft = (Difference_In_Time / (1000 * 3600 * 24)).toString();
 
-  let returnedData = [daysLeft, secretWarsDate];
+  let returnedData = [daysLeft, secretWarsDate, prettierData];
 
   return returnedData;
 
@@ -76,6 +84,7 @@ async function buildDaysLeftImage() {
 
 
 buildDaysLeftImage()
+
 
 
 export { buildDaysLeftImage, daysLeft };

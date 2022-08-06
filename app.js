@@ -25,7 +25,7 @@ dotenv.config();
     console.log("Tweeting begins..");
     let caption = await buildDaysLeftImage();
     let secretWarsDate = await daysLeft();
-    secretWarsDate = secretWarsDate[1];
+    secretWarsDate = secretWarsDate[2];
 
     caption = `📅 ${caption} days left until #AvengersSecretWars.\n The movie is current expected to come out on ${secretWarsDate}.`;   
   
@@ -57,7 +57,7 @@ dotenv.config();
   async function instagramPost() {
     try {
       let secretWarsDate = await daysLeft();
-      secretWarsDate = secretWarsDate[1];  
+      secretWarsDate = secretWarsDate[2];  
       console.log("Posting to Instagram begins..");
       // Instagram client
       const { username, password } = process.env;
