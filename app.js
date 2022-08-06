@@ -27,7 +27,7 @@ dotenv.config();
     let secretWarsDate = await daysLeft();
     secretWarsDate = secretWarsDate[1];
 
-    caption = `📅 ${caption} days left until #AvengersSecretWars\n The movie is current expected to come out on ${secretWarsDate}`;   
+    caption = `📅 ${caption} days left until #AvengersSecretWars.\n The movie is current expected to come out on ${secretWarsDate}.`;   
   
       const client = new TwitterApi({
         appKey: process.env.CONSUMER_KEY,
@@ -63,7 +63,7 @@ dotenv.config();
       const { username, password } = process.env;
       const ig = new IgApiClient();
       let caption = await buildDaysLeftImage();
-      caption = `📅 ${caption} days left until Avengers: Secret Wars\nThe movie is currently expected to come out on ${secretWarsDate}.\n\n#avengers #marvel #avengerssecretwars #kangdynasty #kang #marvel #mcu #avengersendgame #marvelstudios #secretwars #loki #marveluniverse #marvelcinematicmultiverse #avengersassemble`;
+      caption = `📅 ${caption} days left until Avengers: Secret Wars.\nThe movie is currently expected to come out on ${secretWarsDate}.\n\n#avengers #marvel #avengerssecretwars #kangdynasty #kang #marvel #mcu #avengersendgame #marvelstudios #secretwars #loki #marveluniverse #marvelcinematicmultiverse #avengersassemble`;
       ig.state.generateDevice(username);
       const user = await ig.account.login(username, password);
       const path = `daysleft.jpg`;
