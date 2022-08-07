@@ -80,13 +80,14 @@ dotenv.config();
   // Run on every day at 12 PM IST
   let dailyPost = new CronJob(
     "30 6 * * *",
-    function () {
+    async function () {
       console.log("Auto post to Instagram begins..");
-      instagramPost();
-      tweetNow();
+      await instagramPost();
+      await tweetNow();
       },
     true
   );
+
   
 
   dailyPost.start();
