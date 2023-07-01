@@ -8,6 +8,7 @@ async function daysLeft() {
 
   // Change this to modify the date. 
 let secretWarsDate = "05/01/2026";
+let newDateMode = false;
 
 
   // Fetch Today's Date
